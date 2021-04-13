@@ -1,0 +1,12 @@
+.canvas{
+    width: 640px;
+    height: 480px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.canvas h2, .canvas p {
+    width: 100%;
+}
