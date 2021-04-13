@@ -29,9 +29,7 @@ def filter_similarity(data, user):
     person = data.loc[user]
     person = person.loc[person != 0.0]
     person = person.drop(['Name', 'Emotion'])
-    
     person_keys = person.keys().to_list()
-    
     closest_distance = float('inf')
     closest_person = ''
 
@@ -42,23 +40,13 @@ def filter_similarity(data, user):
         person2 = person2.loc[person_keys]
 
         distance_btwn_person = distance(person, person2)
-        
         if distance_btwn_person < closest_distance:
             closest_distance = distance_btwn_person
             closest_person = other_person
 
-    return closest_person, closest_distance
+    return closest_person, closest_distance, person_keys
+
 
 def distance(person1, person2):
     distance = euclidean(person1, person2)
     return distance
-
-
-""" if __name__ == '__main__':
-    emotion_input = argv[1]
-    user = argv[2]
-
-    data = prepare_data(emotion_input, user)
-    person_filter, distance = filter_similarity(data, user)
-
-    print(person_filter, distance) """
