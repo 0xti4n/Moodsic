@@ -32,6 +32,9 @@ def music_recommender(data, p_filter, p_keys):
 
     song_list = prepare_songs(p_keys)
 
+    if person_songs_keys == []:
+        person_songs_keys = song_list.index.to_list()
+
     filter_song = search_song(song_list, person_songs_keys)
 
     len_keys = len(person_songs_keys)
