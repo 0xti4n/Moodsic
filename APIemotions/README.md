@@ -7,6 +7,7 @@
     - [FER](https://pypi.org/project/fer/)
     - tensorflow
     - openCV
+    pip install tensorflow>=1.7 opencv-contrib-python==3.3.0.9
 
 
 ## Usage
