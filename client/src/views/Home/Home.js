@@ -4,9 +4,11 @@ import {Button, Grid} from '@material-ui/core';
 
 import './home.css'
 
+/* This is the Home page, where the users will allow us
+get a short video to evaluate their current emotion*/
 
 let Home = () => {
-  const [showCam, setshowCam] = useState(false)
+  const [showCam, setShowCam] = useState(false)
 
   return (
     <Grid container justify='center' direction="column" alignItems='center' spacing={3} >
@@ -18,7 +20,7 @@ let Home = () => {
         </div></Grid>
       }
       <Grid item xs={10}>
-        <Button onClick={() => setshowCam(!showCam)} variant='contained' color='secondary'>
+        <Button onClick={() => setShowCam(!showCam)} variant='contained' color='secondary'>
           {showCam ? 'Hide' : 'Show'} my mood
         </Button>
       </Grid>
