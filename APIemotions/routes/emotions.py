@@ -4,6 +4,7 @@ from fer import FER
 import cv2
 import sys
 import json
+import os
 
 
 def checkEmotions(path):
@@ -16,7 +17,12 @@ def checkEmotions(path):
 
     return emotion, score
 
-path = sys.argv[1]
-emotion, score = checkEmotions(path)
+#path = sys.argv[1]
+#PATH = "emotions/" + path
+path = os.path.abspath("routes")
+PATH = path + "/emotions/" + sys.argv[1]
+#print(path)
+emotion, score = checkEmotions(PATH)
+#emotion, score = checkEmotions(path)
 print(json.dumps({"emotion": emotion, "score": score}))
 sys.stdout.flush()
