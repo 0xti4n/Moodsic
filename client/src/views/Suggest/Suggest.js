@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Card, CardContent, CardMedia } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Ratings from '../../components/rate'
 
 import './suggest.css'
@@ -24,7 +25,7 @@ let Home = () => {
   }
 
   return (
-    <Grid container justify='center' direction="column" alignItems='center' spacing={3} >
+    <Grid container className="suggest" justify='center' direction="column" alignItems='center' spacing={3} >
       <Grid item>
         <h2>Our suggestion for you</h2>
         <p>We hope you enjoy it</p>
@@ -36,6 +37,11 @@ let Home = () => {
           <p>Show us your <strong>mood</strong> and we will suggest a song to go with it</p>
         </div></Grid>
       } */}
+      <Grid item xs={12}>
+        <Card>
+          <iframe src="https://www.youtube.com/embed/3yT5jJZplsk" width="640" height="380" allowFullScreen frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;picture-in-picture" allowfullscreen/>
+        </Card>
+      </Grid>
       <Grid item xs={10}>
         <Ratings handleInputChange={handleRate}/>
       </Grid>

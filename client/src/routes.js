@@ -1,8 +1,10 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import './index.css'
+
 const load = (Component: any) => (props: any) => (
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<div className="container">Loading...</div>}>
     <Component {...props} />
   </Suspense>
 );

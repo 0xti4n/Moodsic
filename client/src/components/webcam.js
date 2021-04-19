@@ -6,59 +6,29 @@ import "./webcam.css";
 /* this is the Webcam component to display a
 webcam for the user to capture its emotion */
 
-let WebCam = () => {
+let WebCam = (props) => {
 	const webcamRef = useRef(null);
-	const canvasRef = useRef(null);
+  
+  
+  useEffect(() => {
+    if(props.takePic) {
+      capture()
+      props.setOpen(true)
+    }
+  }, [props.takePic])
 
-	const detect = async () => {
-		if (
-			typeof webcamRef.current !== "undefined" &&
-			webcamRef.current !== null &&
-			webcamRef.current.video.readyState === 4
-		) {
-			const videoWidth = webcamRef.current.video.videoWidth;
-			const videoHeight = webcamRef.current.video.videoHeight;
-
-			webcamRef.current.video.width = videoWidth;
-			webcamRef.current.video.height = videoHeight;
-
-			canvasRef.current.width = videoWidth;
-			canvasRef.current.height = videoHeight;
-
-
-		}
-	};
-
-	useEffect(() => { 
-    detect();
-	}, []);
-
-  const videoConstraints = {
-    facingMode: 'user'
-  }
+  const capture = React.useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    props.setImage(imageSrc);
+  }, [webcamRef, props.setImage]);
 
   return (
     <div className="App">
       <header className="App-header">
         <Webcam className="webcam"
           ref={webcamRef}
-          muted={true}
-          videoConstraints={videoConstraints}
-        />
-        <canvas
-        className="webcam-canvas"
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 8,
-            width: 640,
-            height: 480,
-          }}
+          audio={false}
+          screenshotFormat="image/jpeg"
         />
       </header>
     </div>
