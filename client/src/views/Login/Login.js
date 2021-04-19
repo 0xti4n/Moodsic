@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Cookies from 'universal-cookie';
 import { Grid, TextField, FormControl, Button, Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -12,12 +13,13 @@ put their username along with their password and we will
 verify if the user is on our database*/
 
 let Login = () => {
+  const cookies = new Cookies();
   const [username, setUser] = useState('')
-  const [password, setPassword] = useState('')
   const [open, setOpen] = useState(false)
 
   const handleClick = () => {
-    if (username !== '' && password !== '') {
+    if (username !== '') {
+      cookies.set('user', JSON.stringify(username), { path: '/', secure: true, sameSite: true, maxAge: 7200 })
       window.location.href = '/home'
     } else {
       setOpen(true)
@@ -40,11 +42,6 @@ let Login = () => {
       <Grid item>
         <FormControl>
           <TextField required={true} variant='outlined' color='secondary' label='User Name' type='email' value={username} onChange={e => setUser(e.target.value)}/>
-        </FormControl>
-      </Grid>
-      <Grid item>
-        <FormControl>
-          <TextField required={true} variant='outlined' color='secondary' label='Password' type='password' value={password} onChange={e => setPassword(e.target.value)}/>
         </FormControl>
       </Grid>
       <Grid item xs={10}>
