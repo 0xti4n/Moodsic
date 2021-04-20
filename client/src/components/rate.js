@@ -56,7 +56,7 @@ export default function Ratings(props) {
       <Box component="fieldset" mb={3} borderColor="transparent">
         <StyledRating
           name="customized-color customized-icons"
-          defaultValue={3}
+          defaultValue={props.rate}
           getLabelText={(value) => customIcons[value].label}
           IconContainerComponent={IconContainer}
           onChange={props.handleInputChange}

@@ -35,7 +35,6 @@ let Home = () => {
         'Path': imgSrc.substr(23)
       };
 
-      console.log(body)
       let conf = {
         'method': 'POST',
         headers: {
@@ -51,7 +50,7 @@ let Home = () => {
             console.log('error')
             setLoad(false)
             alert('ups something went wrong')
-          } else if (res.state === 200) {
+          } else if (res.status === 200) {
 
           }
           return (res.json())
@@ -62,7 +61,6 @@ let Home = () => {
           setEmotion(emo)
           setLoad(false)
         })
-      console.log(imgSrc.substr(23))
       
     } else {
       if(!openD) {
@@ -82,7 +80,7 @@ let Home = () => {
 
   return (
     <Grid container justify='center' alignItems='center' spacing={3} >
-      {showCam && <Grid item xs={1}>
+      {showCam && <Grid item xs={2} zeroMinWidth>
         <h2>Hi {username}</h2>
       </Grid>}
       {showCam ? 
