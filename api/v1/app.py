@@ -1,11 +1,19 @@
-#!venv/bin/python3
+#!/usr/bin/python3
 """API v1"""
 from fastapi import FastAPI, HTTPException
 from filter_usr import colaborative_filter, prepare_recom
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 my_app = FastAPI()
+
+my_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class Data(BaseModel):
