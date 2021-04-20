@@ -3,7 +3,6 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 
 export default function ImageDialog(props) {
   const handleSave = (option) => {
-    console.log(option)
     if (option) {
       props.setSave(true)
     }
@@ -12,10 +11,10 @@ export default function ImageDialog(props) {
 
   return (
     <React.Fragment>
-      <Dialog maxWidth='sm' open={props.open} onClose={() => props.setOpen(false)} aria-labelledby="image-dialog">
+      <Dialog maxWidth='sm' open={props.open} onClose={() => props.setOpen(false)} aria-labelledby="image-dialog" aria-describedby="image-dialog-description">
         <DialogContent>
           <DialogTitle id="image-dialog">Your picture</DialogTitle>
-          <DialogContentText>Do you want this to be the picture we will evaluate?.</DialogContentText>
+          <DialogContentText id='image-dialog-description'>Do you want this to be the picture we will evaluate?.</DialogContentText>
           <Card>
             <CardMedia height="380px" component='img' alt="picture of user" image={props.imgSrc} />
           </Card>
