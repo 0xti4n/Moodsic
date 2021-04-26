@@ -17,6 +17,7 @@ my_app.add_middleware(
 
 
 class Data(BaseModel):
+    """class Base model for updating info"""
     emotion: str
     song_name: str
     rating: int
@@ -24,7 +25,15 @@ class Data(BaseModel):
 
 @my_app.get('/recommender/{nickname}')
 async def recommender(emotion: str, nickname: str):
-    """function that recommender music"""
+    """function that recommends music
+
+    Args:
+    -> emotion an string that contains the emotion to find
+    -> nickname an string that contains the username to find
+
+    Returns:
+    -> the recommended song
+    """
     c_fil = colaborative_filter
     p_r = prepare_recom
     data = c_fil.prepare_data(emotion)
@@ -52,6 +61,16 @@ async def recommender(emotion: str, nickname: str):
 
 @my_app.put('/recommender/update_rating/{nickname}')
 async def update_rating(nickname: str, data: Data):
+    """function that updates the rating of a song of a user
+
+    Args:
+    -> nickname an string that contains the user to find
+    -> Data is a dict that contains the information to update
+        in the database
+
+    Returns:
+    -> OK if it was succesful
+    """
     finish = False
     c_fil = colaborative_filter
     csv_file = c_fil.prepare_data(data.emotion)
