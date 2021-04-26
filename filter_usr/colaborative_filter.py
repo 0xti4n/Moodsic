@@ -1,10 +1,19 @@
 #!/usr/bin/python3
+"""module that applies the collaborative filter"""
 import pandas as pd
 from sys import argv
 from scipy.spatial.distance import euclidean
 
 
 def prepare_data(emotion):
+    """function that organizes the data for the search
+
+    Args:
+    -> emotion an string that contains the emotion to find
+
+    Returns:
+    -> organized data
+    """
     emot_list = ['angry', 'happy', 'sad', 'neutral']
 
     if emotion in emot_list:
@@ -26,6 +35,18 @@ def prepare_data(emotion):
 
 
 def filter_similarity(data, user):
+    """function that applies the collaborative filter
+
+    Args:
+    -> data a pandas object containing the organized data for the search
+    -> user the selected user who will be searched for people
+        with similar tastes
+
+    Returns:
+    -> closest_person the person with whom the match was made
+    -> closest_distance euclidean distance
+    -> person_keys song keys to update the song list
+    """
     person = data.loc[user]
     person = person.loc[person != 0.0]
     person = person.drop(['Name', 'Emotion'])
@@ -48,5 +69,14 @@ def filter_similarity(data, user):
 
 
 def distance(person1, person2):
+    """function that finds the euclidean distance
+
+    Args:
+    -> person1 the data of the person1 with whom it is to be compared
+    -> person2 the data of the person2 with whom it is to be compared
+
+    Returns:
+    -> the distance between person1 and person2
+    """
     distance = euclidean(person1, person2)
     return distance
