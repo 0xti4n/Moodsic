@@ -1,4 +1,4 @@
-#!venv/bin/python3
+#!/usr/bin/python3
 import pandas as pd
 from sys import argv
 from scipy.spatial.distance import euclidean
